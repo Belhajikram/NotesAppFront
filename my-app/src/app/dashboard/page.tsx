@@ -12,7 +12,7 @@ export default function DashboardPage() {
   const [notes, setNotes] = useState<Note[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("All Notes");
   const [searchQuery, setSearchQuery] = useState("");
-  const { logout, user } = useAuth();
+  const { logout } = useAuth();
 
 
   const fetchNotes = useCallback(async () => {
@@ -37,7 +37,6 @@ export default function DashboardPage() {
     fetchNotes();
   }, [fetchNotes]);
 
-
   const handleAddNote = async (newNote: { title: string; content: string; category: string }) => {
     if (!newNote.title || !newNote.content) return;
 
@@ -61,7 +60,7 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between mb-6">
             {/* Welcome Message */}
             <h2 className="text-2xl font-semibold text-gray-700">
-              {user?.name ? `${user.name}, welcome to your notes app!` : "Welcome to your notes app!"}
+               "Welcome to your notes app!"
             </h2>
 
             {/* Search Bar & Logout Button */}

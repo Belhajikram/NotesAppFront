@@ -17,8 +17,8 @@ export default function SignIn() {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const response = await axios.post("https://notesapp-production-2bf6.up.railway.app/auth/login", { email, password });
-      login(response.data.access_token);
+      await axios.post("http://localhost:3001/auth/login", { email, password },{ withCredentials: true } );
+      await login(); // Call login to update auth state
     } catch (err) {
       console.error("Login failed:", err);
     } finally {
