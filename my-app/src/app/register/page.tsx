@@ -13,26 +13,27 @@ export default function Register() {
 
   const handleSubmit = async (values: { username: string; email: string; password: string }) => {
     try {
-      const response = await axios.post("http://localhost:3001/users/register", values);
-  
+      const response = await axios.post("https://notesapp-production-2bf6.up.railway.app/users/register", values);
+
       if (response.data.token) {
         localStorage.setItem("token", response.data.token); // Store the token
       }
-  
+
       notification.success({
         message: "Registration Successful",
         description: "You can now log in with your credentials.",
       });
-  
+
       router.push("/login");
     } catch (err) {
+      console.error("Registration error:", err);
       notification.error({
         message: "Registration Failed",
         description: "There was an error during registration.",
       });
     }
   };
-  
+
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Left Side - Register Form */}

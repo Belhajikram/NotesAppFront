@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Sidebar from "../components/sideBar";
 import SearchBar from "../components/searchBar";
 import Notes from "../components/notes";
@@ -13,11 +13,9 @@ export default function DashboardPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Notes");
   const [searchQuery, setSearchQuery] = useState("");
   const { logout, user } = useAuth();
-  useEffect(() => {
-    fetchNotes();
-  }, [searchQuery, selectedCategory]);
 
-  const fetchNotes = async () => {
+
+  const fetchNotes = useCallback(async () => {
     try {
       let data = [];
 
@@ -33,7 +31,12 @@ export default function DashboardPage() {
     } catch (error) {
       console.error("Error fetching notes:", error);
     }
-  };
+  }, [searchQuery, selectedCategory]); // Dependencies
+
+  useEffect(() => {
+    fetchNotes();
+  }, [fetchNotes]);
+
 
   const handleAddNote = async (newNote: { title: string; content: string; category: string }) => {
     if (!newNote.title || !newNote.content) return;

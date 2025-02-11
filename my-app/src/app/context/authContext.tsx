@@ -2,8 +2,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+interface User {
+  token: string;
+  name?: string; 
+}
+
+
 interface AuthContextType {
-  user: any;
+  user: User | null;
   login: (token: string) => void;
   logout: () => void;
   isAuthenticated: boolean;
@@ -12,15 +18,17 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const name = localStorage.getItem("userName"); // Assuming you store the name
     if (token) {
-      setUser({ token });
+      setUser({ token, name: name || "User" }); // Default name if none exists
     }
   }, []);
+  
 
   const login = (token: string) => {
     localStorage.setItem("token", token);
