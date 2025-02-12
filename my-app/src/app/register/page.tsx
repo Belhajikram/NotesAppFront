@@ -13,7 +13,7 @@ export default function Register() {
 
   const handleSubmit = async (values: { username: string; email: string; password: string }) => {
     try {
-      await axios.post("http://notesapp-production-b8aa.up.railway.app/users/register", values, { withCredentials: true });
+      await axios.post("https://notesapp-production-b8aa.up.railway.app/users/register", values, { withCredentials: true });
 
       notification.success({
         message: "Registration Successful",
