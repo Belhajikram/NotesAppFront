@@ -5,7 +5,7 @@ export interface Note {
   category: string;
 }
 
-const API_URL = "http://localhost:3001/notes";
+const API_URL = "http://notesapp-production-b8aa.up.railway.app/notes";
 
 // Fetch all notes
 export async function getNotes(): Promise<Note[]> {

@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   // Check authentication status on load
   const checkAuth = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/auth/user", {
+      const response = await axios.get("http://notesapp-production-b8aa.up.railway.app/auth/user", {
         withCredentials: true, // Ensure cookies are sent
       });
 
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const logout = async () => {
     try {
-      await axios.post("http://localhost:3001/auth/logout", {}, { withCredentials: true });
+      await axios.post("http://notesapp-production-b8aa.up.railway.app/auth/logout", {}, { withCredentials: true });
       setUser(null);
       router.push("/login");
     } catch (error) {
