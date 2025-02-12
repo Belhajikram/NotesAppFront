@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, user } = useAuth();
+  const { user } = useAuth();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
@@ -14,7 +14,7 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
     } else {
       setLoading(false);
     }
-  }, [user]);
+  }, [user,router]);
 
   if (loading) return null; // Prevent rendering until authentication is checked
 
