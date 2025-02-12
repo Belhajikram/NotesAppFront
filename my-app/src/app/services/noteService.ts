@@ -5,7 +5,7 @@ export interface Note {
   category: string;
 }
 
-const API_URL = "https://notesapp-production-b8aa.up.railway.app/notes";
+const API_URL = "http://localhost:3001/notes";
 
 // Fetch all notes
 export async function getNotes(): Promise<Note[]> {
@@ -69,7 +69,10 @@ export async function searchNotes(query: string): Promise<Note[]> {
 
 // Filter notes by category
 export async function filterNotesByCategory(category: string): Promise<Note[]> {
-  const response = await fetch(`${API_URL}/filter?category=${category}`);
+  const response = await fetch(`${API_URL}/filter?category=${category}`, {
+    method: 'GET',
+    credentials: 'include',
+  });
   if (!response.ok) throw new Error("Failed to filter notes");
   return response.json();
 }
