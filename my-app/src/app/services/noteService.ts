@@ -9,7 +9,10 @@ const API_URL = "http://localhost:3001/notes";
 
 // Fetch all notes
 export async function getNotes(): Promise<Note[]> {
-  const response = await fetch(API_URL);
+  const response = await fetch(API_URL, {
+    method: "GET",
+    credentials: "include", // Automatically sends the auth cookie
+  });
   if (!response.ok) throw new Error("Failed to fetch notes");
   return response.json();
 }
@@ -24,6 +27,7 @@ export async function createNote(note: {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(note),
+    credentials: "include",
   });
   if (!response.ok) throw new Error("Failed to create note");
   return response.json();
@@ -31,7 +35,7 @@ export async function createNote(note: {
 
 // Delete a note
 export async function deleteNote(id: number): Promise<void> {
-  const response = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+  const response = await fetch(`${API_URL}/${id}`, { method: "DELETE", credentials: "include" });
   if (!response.ok) throw new Error("Failed to delete note");
 }
 
@@ -46,6 +50,7 @@ export const updateNote = async (
       "Content-Type": "application/json",
     },
     body: JSON.stringify(updatedNote),
+    credentials: "include",
   });
 
   if (!response.ok) {

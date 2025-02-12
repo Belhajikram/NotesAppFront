@@ -60,7 +60,7 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between mb-6">
             {/* Welcome Message */}
             <h2 className="text-2xl font-semibold text-gray-700">
-               "Welcome to your notes app!"
+               Welcome to your notes app!
             </h2>
 
             {/* Search Bar & Logout Button */}
