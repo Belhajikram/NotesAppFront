@@ -3,17 +3,23 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
 interface AuthContextType {
-  user: any | null;
+  user: User | null;
   login: () => Promise<void>;
   logout: () => void;
-  loading: boolean; // Add loading state
+  loading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<any | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true); // Initialize loading state
   const router = useRouter();
 
@@ -26,6 +32,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       setUser(response.data.user);
     } catch (error) {
+      console.error("Authentication error:", error)
       setUser(null);
     } finally {
       setLoading(false); // Set loading to false after the check is complete
