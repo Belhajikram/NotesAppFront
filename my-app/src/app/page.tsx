@@ -1,12 +1,12 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
-import Sidebar from "../components/sideBar";
-import SearchBar from "../components/searchBar";
-import Notes from "../components/notes";
-import { getNotes, createNote, searchNotes, filterNotesByCategory, Note } from "../services/noteService";
+import Sidebar from "./components/sideBar";
+import SearchBar from "./components/searchBar";
+import Notes from "./components/notes";
+import { getNotes, createNote, searchNotes, filterNotesByCategory, Note } from "./services/noteService";
 import '@ant-design/v5-patch-for-react-19';
-import ProtectedRoute from "../components/protectedRoute";
-import { useAuth } from "../context/authContext";
+import ProtectedRoute from "./components/protectedRoute";
+import { useAuth } from "./context/authContext";
 
 export default function DashboardPage() {
   const [notes, setNotes] = useState<Note[]>([]);
