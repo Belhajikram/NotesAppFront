@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const login = async () => {
     await checkAuth(); // Call checkAuth after login to update user state
-    router.push("/dashboard");
+    router.push("/");
   };
 
   const logout = async () => {
