@@ -62,7 +62,10 @@ export const updateNote = async (
 
 // Search notes by keyword
 export async function searchNotes(query: string): Promise<Note[]> {
-  const response = await fetch(`${API_URL}/search?query=${query}`);
+  const response = await fetch(`${API_URL}/search?query=${query}`, {
+    method: 'GET',
+    credentials: 'include',
+  });
   if (!response.ok) throw new Error("Failed to search notes");
   return response.json();
 }
