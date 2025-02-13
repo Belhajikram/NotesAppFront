@@ -68,6 +68,7 @@ export default function SignIn() {
             type="primary"
             htmlType="submit"
             block
+            loading={loading}
             className="bg-[#FF9800] text-white hover:bg-[#e68900] transition-colors duration-300 mt-4"
           >
             Sign In
