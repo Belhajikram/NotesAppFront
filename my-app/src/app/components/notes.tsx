@@ -9,10 +9,12 @@ const Notes = ({
   notes,
   onDelete,
   onAdd,
+  isSidebarOpen, // Pass sidebar state to adjust styles
 }: {
   notes: Note[];
   onDelete: (id: number) => void;
   onAdd: (note: Note) => void;
+  isSidebarOpen: boolean;
 }) => {
   const [newTitle, setNewTitle] = useState("");
   const [newContent, setNewContent] = useState("");
@@ -118,7 +120,11 @@ const Notes = ({
   };
 
   return (
-    <div className="relative md:ml-72 px-4 md:px-8">
+    <div
+      className={`relative px-4 md:px-8 transition-all duration-300 ${
+        isSidebarOpen ? "sm:ml-64" : "sm:ml-0"
+      }`}
+    >
       {/* Notes List */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-4">
         {notes.map((note) => (

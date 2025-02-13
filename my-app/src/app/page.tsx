@@ -12,8 +12,8 @@ export default function DashboardPage() {
   const [notes, setNotes] = useState<Note[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("All Notes");
   const [searchQuery, setSearchQuery] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const { logout } = useAuth();
-
 
   const fetchNotes = useCallback(async () => {
     try {
@@ -31,7 +31,7 @@ export default function DashboardPage() {
     } catch (error) {
       console.error("Error fetching notes:", error);
     }
-  }, [searchQuery, selectedCategory]); // Dependencies
+  }, [searchQuery, selectedCategory]);
 
   useEffect(() => {
     fetchNotes();
@@ -58,15 +58,15 @@ export default function DashboardPage() {
         <div className="flex-1 p-6">
           {/* Top Section: Welcome Message & Search Bar */}
           <div className="flex items-center justify-between mb-6">
-            {/* Welcome Message */}
             <h2 className="text-2xl font-semibold text-gray-700">
                Welcome to your notes app!
             </h2>
 
-            {/* Search Bar & Logout Button */}
             <div className="flex items-center space-x-4">
               <SearchBar onSearch={setSearchQuery} />
-              <button onClick={logout} className="bg-[#FF9800] text-white font-semibold px-6 py-2 rounded-full shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              <button 
+                onClick={logout} 
+                className="bg-[#FF9800] text-white font-semibold px-6 py-2 rounded-full shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg"
               >
                 Logout
               </button>
@@ -78,6 +78,7 @@ export default function DashboardPage() {
             notes={notes}
             onDelete={(id) => setNotes(notes.filter((note) => note.id !== id))}
             onAdd={handleAddNote}
+            isSidebarOpen={sidebarOpen} 
           />
         </div>
       </div>
