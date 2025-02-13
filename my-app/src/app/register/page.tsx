@@ -31,9 +31,9 @@ export default function Register() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex flex-col md:flex-row h-screen bg-gray-100 p-4 md:p-0">
       {/* Left Side - Register Form */}
-      <div className="w-96 md:w-1/2 p-12 flex flex-col justify-center min-h-[500px] bg-white rounded-l-xl shadow-lg">
+      <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-white rounded-xl shadow-lg">
         <Typography.Title level={2} className="text-[#FF9800] text-center">
           Create an Account
         </Typography.Title>
@@ -87,7 +87,7 @@ export default function Register() {
           </Button>
         </Form>
         <p className="text-center mt-4">
-          Already have an account?{" "}
+          Already have an account? {" "}
           <Button type="link" className="text-[#FF9800]" onClick={() => router.push("/login")}>
             Sign In
           </Button>
@@ -95,7 +95,7 @@ export default function Register() {
       </div>
 
       {/* Right Side - Welcome Section */}
-      <div className="w-1/2 bg-[#FF9800] flex flex-col justify-center items-center text-white p-10 rounded-l-3xl">
+      <div className="hidden md:flex w-1/2 bg-[#FF9800] flex-col justify-center items-center text-white p-10 rounded-xl">
         <Typography.Title level={2}>Welcome Back!</Typography.Title>
         <p className="text-center text-lg">Join us and start managing your notes effortlessly.</p>
         <Button
