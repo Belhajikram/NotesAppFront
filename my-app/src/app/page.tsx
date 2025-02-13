@@ -87,14 +87,6 @@ export default function DashboardPage() {
             isSidebarOpen={sidebarOpen} 
           />
         </div>
-
-        {/* Move the sidebar toggle button to avoid overlap */}
-        <button
-          className="md:hidden fixed top-6 left-4 z-50 bg-[#FF9800] text-white p-2 rounded-lg shadow-md"
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-        >
-          ☰
-        </button>
       </div>
     </ProtectedRoute>
   );
