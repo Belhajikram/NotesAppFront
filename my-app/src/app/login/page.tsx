@@ -27,72 +27,41 @@ export default function SignIn() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gray-100 p-4">
-      {/* Left Side - Login Form */}
-      <div className="w-full md:w-1/2 p-6 md:p-12 bg-white rounded-xl shadow-lg max-w-md md:max-w-none">
-        <Typography.Title level={2} className="text-center text-gray-800">
-          Sign in to Account
-        </Typography.Title>
-        <Form onFinish={handleSubmit} layout="vertical" className="space-y-4">
-          <Form.Item
-            label="Email"
-            name="email"
-            rules={[{ required: true, message: "Please enter a valid email", type: "email" }]}
-          >
-            <Input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="rounded-lg border-gray-300 p-2 w-full"
-            />
-          </Form.Item>
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[{ required: true, message: "Please enter your password" }]}
-          >
-            <Input.Password
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              className="rounded-lg border-gray-300 p-2 w-full"
-            />
-          </Form.Item>
-          <div className="flex items-center justify-between text-sm">
-            <Checkbox>Remember me</Checkbox>
-            <Button type="link" className="text-[#FF9800]">
-              Forgot Password?
+    <div className="flex h-screen items-center justify-center bg-gray-100 p-4">
+      <div className="w-full max-w-4xl flex flex-col md:flex-row bg-white shadow-lg rounded-xl overflow-hidden">
+        {/* Left Side - Login Form */}
+        <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-center min-h-[500px]">
+          <Typography.Title level={2} className="text-green-600 text-center">
+            Sign in to Account
+          </Typography.Title>
+          <Form layout="vertical" onFinish={handleSubmit} className="space-y-4">
+            <Form.Item label="Email" rules={[{ required: true, type: "email" }]}>
+              <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" />
+            </Form.Item>
+            <Form.Item label="Password" rules={[{ required: true }]}>
+              <Input.Password value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" />
+            </Form.Item>
+            <div className="flex justify-between items-center mb-4">
+              <Checkbox>Remember me</Checkbox>
+              <a className="text-[#FF9800]">Forgot Password?</a>
+            </div>
+            <Button type="primary" htmlType="submit" block loading={loading} className="bg-[#FF9800] hover:bg-[#e68900]">
+              Sign In
             </Button>
-          </div>
-          <Button
-            type="primary"
-            htmlType="submit"
-            block
-            loading={loading}
-            className="bg-[#FF9800] text-white hover:bg-[#e68900] transition-colors duration-300 mt-4"
-          >
-            Sign In
+          </Form>
+        </div>
+
+        {/* Right Side - Signup Section */}
+        <div className="w-full md:w-1/2 bg-[#FF9800] text-white flex flex-col justify-center items-center p-6 md:p-10 min-h-[500px]">
+          <Typography.Title level={2} className="text-center">
+            Hello, Friend!
+          </Typography.Title>
+          <p className="text-center">Fill up personal information and start your journey with us.</p>
+          <Button ghost className="border-white mt-4" onClick={() => router.push("/register")}>
+            Sign Up
           </Button>
-        </Form>
-      </div>
-  
-      {/* Right Side - Welcome Section (Hidden on Mobile) */}
-      <div className="w-full md:w-1/2 bg-[#FF9800] flex flex-col justify-center items-center text-white p-8 md:p-10 rounded-xl mt-6 md:mt-0">
-        <Typography.Title level={3} className="text-center">
-          Hello, Friend!
-        </Typography.Title>
-        <p className="text-center text-base">
-          Fill up personal information and start your journey with us.
-        </p>
-        <Button
-          ghost
-          className="border-white text-white hover:bg-white hover:text-[#FF9800] mt-4"
-          onClick={() => router.push("/register")}
-        >
-          Sign Up
-        </Button>
+        </div>
       </div>
     </div>
   );
-  
 }
