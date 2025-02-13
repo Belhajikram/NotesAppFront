@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FiFolder, FiBriefcase, FiUser, FiCheckSquare, FiMenu } from "react-icons/fi";
 import { AiOutlineBulb } from "react-icons/ai";
 import { Menu } from "antd";
 
-// Define category names and corresponding icons
 const categories = [
   { name: "All Notes", icon: <FiFolder /> },
   { name: "Work", icon: <FiBriefcase /> },
@@ -18,6 +17,26 @@ const Sidebar = ({ onSelectCategory, isOpen, setIsOpen }: {
   setIsOpen: (open: boolean) => void;
 }) => {
   const [activeCategory, setActiveCategory] = useState("All Notes");
+
+  // Close sidebar when clicking outside (for mobile)
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const sidebar = document.getElementById("sidebar");
+      if (sidebar && !sidebar.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, setIsOpen]);
 
   const items = categories.map(({ name, icon }) => ({
     key: name,
@@ -35,9 +54,13 @@ const Sidebar = ({ onSelectCategory, isOpen, setIsOpen }: {
         <FiMenu size={24} />
       </button>
 
+      {/* Overlay to close sidebar when clicking outside */}
+      {isOpen && <div className="fixed inset-0 bg-black bg-opacity-30 md:hidden" onClick={() => setIsOpen(false)}></div>}
+
       {/* Sidebar Panel */}
       <div
-        className={`fixed md:relative top-0 left-0 h-full w-64 bg-white shadow-lg p-5 transition-transform z-40 ${
+        id="sidebar"
+        className={`fixed md:relative top-0 left-0 h-full w-64 bg-white shadow-lg p-5 transition-transform z-50 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:w-72`}
       >
@@ -48,7 +71,7 @@ const Sidebar = ({ onSelectCategory, isOpen, setIsOpen }: {
           onClick={({ key }) => {
             setActiveCategory(key as string);
             onSelectCategory(key as string);
-            setIsOpen(false); // ✅ Close sidebar after selection on mobile
+            setIsOpen(false);
           }}
           className="bg-transparent border-none"
           items={items.map((item) => ({
