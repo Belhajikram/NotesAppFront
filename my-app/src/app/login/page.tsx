@@ -27,14 +27,14 @@ export default function SignIn() {
   };
 
   return (
-    <div className="flex h-screen items-center justify-center bg-gray-100">
-      <div className="w-full max-w-4xl flex bg-white shadow-lg rounded-xl overflow-hidden">
+    <div className="flex h-screen items-center justify-center bg-gray-100 p-4">
+      <div className="w-full max-w-4xl flex flex-col md:flex-row bg-white shadow-lg rounded-xl overflow-hidden">
         {/* Left Side - Login Form */}
-        <div className="w-1/2 p-12 flex flex-col justify-center min-h-[500px]">
+        <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-center min-h-[500px]">
           <Typography.Title level={2} className="text-green-600 text-center">
             Sign in to Account
           </Typography.Title>
-          <Form layout="vertical" onFinish={handleSubmit}>
+          <Form layout="vertical" onFinish={handleSubmit} className="space-y-4">
             <Form.Item label="Email" rules={[{ required: true, type: "email" }]}>
               <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" />
             </Form.Item>
@@ -45,21 +45,19 @@ export default function SignIn() {
               <Checkbox>Remember me</Checkbox>
               <a className="text-[#FF9800]">Forgot Password?</a>
             </div>
-            <Button type="primary" htmlType="submit" block loading={loading} className="bg-[#FF9800] hover:bg-[#FF9800]">
+            <Button type="primary" htmlType="submit" block loading={loading} className="bg-[#FF9800] hover:bg-[#e68900]">
               Sign In
             </Button>
           </Form>
         </div>
 
         {/* Right Side - Signup Section */}
-        <div className="w-1/2 bg-[#FF9800] text-white flex flex-col justify-center items-center p-10 min-h-[500px]">
+        <div className="w-full md:w-1/2 bg-[#FF9800] text-white flex flex-col justify-center items-center p-6 md:p-10 min-h-[500px]">
           <Typography.Title level={2} className="text-center">
             Hello, Friend!
           </Typography.Title>
           <p className="text-center">Fill up personal information and start your journey with us.</p>
-          <Button ghost className="border-white mt-4"
-            onClick={() => router.push("/register")}
-          >
+          <Button ghost className="border-white mt-4" onClick={() => router.push("/register")}>
             Sign Up
           </Button>
         </div>

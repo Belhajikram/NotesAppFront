@@ -31,9 +31,9 @@ export default function Register() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-gray-100 p-4 md:p-0">
+    <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gray-100 p-4 md:p-0">
       {/* Left Side - Register Form */}
-      <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-white rounded-xl shadow-lg">
+      <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-white rounded-xl shadow-lg max-w-md md:max-w-none">
         <Typography.Title level={2} className="text-[#FF9800] text-center">
           Create an Account
         </Typography.Title>
@@ -93,7 +93,7 @@ export default function Register() {
           </Button>
         </p>
       </div>
-
+  
       {/* Right Side - Welcome Section */}
       <div className="hidden md:flex w-1/2 bg-[#FF9800] flex-col justify-center items-center text-white p-10 rounded-xl">
         <Typography.Title level={2}>Welcome Back!</Typography.Title>
@@ -108,4 +108,5 @@ export default function Register() {
       </div>
     </div>
   );
+  
 }
