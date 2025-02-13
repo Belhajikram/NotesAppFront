@@ -20,14 +20,12 @@ const Notes = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingNote, setEditingNote] = useState<Note | null>(null);
 
-  // Open modal for adding new note
   const showModal = () => {
     setEditingNote(null);
     resetForm();
     setIsModalOpen(true);
   };
 
-  // Open modal for editing an existing note
   const showEditModal = (note: Note) => {
     setEditingNote(note);
     setNewTitle(note.title);
@@ -36,20 +34,17 @@ const Notes = ({
     setIsModalOpen(true);
   };
 
-  // Close modal
   const handleCancel = () => {
     setIsModalOpen(false);
     resetForm();
   };
 
-  // Reset form fields
   const resetForm = () => {
     setNewTitle("");
     setNewContent("");
     setNewCategory("Work");
   };
 
-  // Handle adding a new note
   const handleAddNote = async () => {
     if (!newTitle || !newContent) return;
 
@@ -68,30 +63,26 @@ const Notes = ({
     }
   };
 
-  // Handle updating an existing note
   const handleUpdateNote = async () => {
-  if (!editingNote || !newTitle || !newContent) return;
+    if (!editingNote || !newTitle || !newContent) return;
 
-  try {
-    const updatedNote = await updateNote(editingNote.id, {
-      title: newTitle,
-      content: newContent,
-      category: newCategory,
-    });
+    try {
+      const updatedNote = await updateNote(editingNote.id, {
+        title: newTitle,
+        content: newContent,
+        category: newCategory,
+      });
 
-    // Instead of calling onAdd, call a proper update handler from the parent
-    onDelete(editingNote.id); // Remove old note
-    onAdd(updatedNote); // Add updated note
+      onDelete(editingNote.id);
+      onAdd(updatedNote);
 
-    setIsModalOpen(false);
-    resetForm();
-  } catch (error) {
-    console.error("Error updating note:", error);
-  }
-};
+      setIsModalOpen(false);
+      resetForm();
+    } catch (error) {
+      console.error("Error updating note:", error);
+    }
+  };
 
-
-  // Handle deleting note
   const handleDeleteNote = async (id: number) => {
     try {
       await deleteNote(id);
@@ -101,7 +92,6 @@ const Notes = ({
     }
   };
 
-  // Show confirmation modal before deleting note
   const showDeleteConfirm = (id: number) => {
     Modal.confirm({
       title: (
@@ -128,42 +118,41 @@ const Notes = ({
   };
 
   return (
-    <div>
+    <div className="relative md:ml-72 px-4 md:px-8">
       {/* Notes List */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-4">
         {notes.map((note) => (
           <Card
-          key={note.id}
-          title={note.title}
-          bordered={false}
-          className="shadow-lg hover:shadow-xl transition-all rounded-lg bg-white hover:bg-[#fabe63] group"
-          extra={
-            <div className="flex items-center space-x-3">
-              <Button 
-                className="text-[#FF9800] group-hover:text-white" 
-                type="link" 
-                icon={<FiEdit />} 
-                onClick={() => showEditModal(note)} 
-              />
-              <Button 
-                className="text-[#FF9800] group-hover:text-white" 
-                type="link" 
-                icon={<FiTrash />} 
-                onClick={() => showDeleteConfirm(note.id)} 
-              />
-            </div>
-          }
-        >
-          <p className="text-gray-600">{note.content}</p>
-        </Card>
-        
+            key={note.id}
+            title={note.title}
+            bordered={false}
+            className="shadow-lg hover:shadow-xl transition-all rounded-lg bg-white hover:bg-[#fabe63] group"
+            extra={
+              <div className="flex items-center space-x-3">
+                <Button 
+                  className="text-[#FF9800] group-hover:text-white" 
+                  type="link" 
+                  icon={<FiEdit />} 
+                  onClick={() => showEditModal(note)} 
+                />
+                <Button 
+                  className="text-[#FF9800] group-hover:text-white" 
+                  type="link" 
+                  icon={<FiTrash />} 
+                  onClick={() => showDeleteConfirm(note.id)} 
+                />
+              </div>
+            }
+          >
+            <p className="text-gray-600">{note.content}</p>
+          </Card>
         ))}
       </div>
 
       {/* Floating Add New Note Button */}
       <Button
         type="primary"
-        className="fixed bottom-10 right-10 bg-[#FF9800] hover:bg-[#FB8C00] rounded-full p-4 shadow-lg"
+        className="fixed bottom-10 right-6 sm:right-10 bg-[#FF9800] hover:bg-[#FB8C00] rounded-full p-4 shadow-lg z-50"
         icon={<span className="text-xl">+</span>}
         onClick={showModal}
       />
