@@ -58,20 +58,18 @@ export default function DashboardPage() {
           setIsOpen={setSidebarOpen} 
         />
 
-        {/* Main Content - Shifts when sidebar is open on mobile */}
+        {/* Main Content */}
         <div 
-          className={`flex-1 p-6 transition-all duration-300 ${
-            sidebarOpen ? "ml-64 md:ml-0" : "ml-0"
-          }`}
+          className={`flex-1 p-6 transition-all duration-300 ${sidebarOpen ? "ml-64 md:ml-0" : "ml-0"}`}
         >
           {/* Top Section: Welcome Message & Search Bar */}
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-semibold text-gray-700">
-               Welcome to your notes app!
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+            <h2 className="text-2xl font-semibold text-gray-700 mb-4 sm:mb-0">
+              Welcome to your notes app!
             </h2>
 
-            <div className="flex items-center space-x-4">
-              <SearchBar onSearch={setSearchQuery} />
+            <div className="flex items-center space-x-4 w-full sm:w-auto">
+              <SearchBar onSearch={setSearchQuery} className="w-full sm:w-72" />
               <button 
                 onClick={logout} 
                 className="bg-[#FF9800] text-white font-semibold px-6 py-2 rounded-full shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg"
@@ -89,6 +87,14 @@ export default function DashboardPage() {
             isSidebarOpen={sidebarOpen} 
           />
         </div>
+
+        {/* Move the sidebar toggle button to avoid overlap */}
+        <button
+          className="md:hidden fixed top-6 left-4 z-50 bg-[#FF9800] text-white p-2 rounded-lg shadow-md"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
+          ☰
+        </button>
       </div>
     </ProtectedRoute>
   );
