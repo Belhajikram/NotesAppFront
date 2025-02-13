@@ -51,11 +51,19 @@ export default function DashboardPage() {
   return (
     <ProtectedRoute>
       <div className="flex h-screen bg-gray-100">
-        {/* Sidebar */}
-        <Sidebar onSelectCategory={setSelectedCategory} />
+        {/* Sidebar with state control */}
+        <Sidebar 
+          onSelectCategory={setSelectedCategory} 
+          isOpen={sidebarOpen} 
+          setIsOpen={setSidebarOpen} 
+        />
 
-        {/* Main Content */}
-        <div className="flex-1 p-6">
+        {/* Main Content - Shifts when sidebar is open on mobile */}
+        <div 
+          className={`flex-1 p-6 transition-all duration-300 ${
+            sidebarOpen ? "ml-64 md:ml-0" : "ml-0"
+          }`}
+        >
           {/* Top Section: Welcome Message & Search Bar */}
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-semibold text-gray-700">

@@ -12,9 +12,12 @@ const categories = [
   { name: "To-Do", icon: <FiCheckSquare /> },
 ];
 
-const Sidebar = ({ onSelectCategory }: { onSelectCategory: (category: string) => void }) => {
+const Sidebar = ({ onSelectCategory, isOpen, setIsOpen }: { 
+  onSelectCategory: (category: string) => void;
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
+}) => {
   const [activeCategory, setActiveCategory] = useState("All Notes");
-  const [isOpen, setIsOpen] = useState(false); // Mobile sidebar state
 
   const items = categories.map(({ name, icon }) => ({
     key: name,
@@ -32,9 +35,9 @@ const Sidebar = ({ onSelectCategory }: { onSelectCategory: (category: string) =>
         <FiMenu size={24} />
       </button>
 
-      {/* Sidebar Panel (Hidden on Mobile, Visible on Desktop) */}
+      {/* Sidebar Panel */}
       <div
-        className={`fixed md:relative top-0 left-0 h-full w-64 bg-white shadow-lg p-5 transition-transform ${
+        className={`fixed md:relative top-0 left-0 h-full w-64 bg-white shadow-lg p-5 transition-transform z-40 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:w-72`}
       >
@@ -45,7 +48,7 @@ const Sidebar = ({ onSelectCategory }: { onSelectCategory: (category: string) =>
           onClick={({ key }) => {
             setActiveCategory(key as string);
             onSelectCategory(key as string);
-            setIsOpen(false); // Close sidebar on mobile after selection
+            setIsOpen(false); // ✅ Close sidebar after selection on mobile
           }}
           className="bg-transparent border-none"
           items={items.map((item) => ({
