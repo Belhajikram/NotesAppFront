@@ -30,7 +30,7 @@ export default function SignIn() {
     <div className="flex h-screen items-center justify-center bg-gray-100 p-4">
       <div className="w-full max-w-4xl flex flex-col md:flex-row bg-white shadow-lg rounded-xl overflow-hidden">
         {/* Left Side - Login Form */}
-        <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-center min-h-[500px]">
+        <div className="w-full max-w-sm md:max-w-none md:w-1/2 p-6 md:p-12 flex flex-col justify-center min-h-[500px] mx-auto">
           <Typography.Title level={2} className="text-green-600 text-center">
             Sign in to Account
           </Typography.Title>
@@ -50,9 +50,9 @@ export default function SignIn() {
             </Button>
           </Form>
         </div>
-
-        {/* Right Side - Signup Section */}
-        <div className="w-full md:w-1/2 bg-[#FF9800] text-white flex flex-col justify-center items-center p-6 md:p-10 min-h-[500px]">
+  
+        {/* Right Side - Signup Section (Hidden on Mobile) */}
+        <div className="hidden md:flex w-1/2 bg-[#FF9800] text-white flex-col justify-center items-center p-6 md:p-10 min-h-[500px]">
           <Typography.Title level={2} className="text-center">
             Hello, Friend!
           </Typography.Title>
@@ -63,5 +63,5 @@ export default function SignIn() {
         </div>
       </div>
     </div>
-  );
+  );  
 }
