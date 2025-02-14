@@ -53,10 +53,10 @@ export default function DashboardPage() {
     <ProtectedRoute>
       <div className="flex h-screen bg-gray-100">
         {/* Sidebar with state control */}
-        <Sidebar 
-          onSelectCategory={setSelectedCategory} 
-          isOpen={sidebarOpen} 
-          setIsOpen={setSidebarOpen} 
+        <Sidebar
+          onSelectCategory={setSelectedCategory}
+          isOpen={sidebarOpen}
+          setIsOpen={setSidebarOpen}
         />
 
         {/* Main Content */}
@@ -64,7 +64,7 @@ export default function DashboardPage() {
           {/* Top Section: Sidebar Toggle, Welcome Message & Search Bar */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
             {/* Sidebar Toggle Button (Mobile) */}
-            <button 
+            <button
               className="md:hidden bg-[#FF9800] text-white p-2 rounded-lg shadow-md mb-4 sm:mb-0"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
@@ -78,10 +78,13 @@ export default function DashboardPage() {
 
             {/* Search Bar & Logout Button */}
             <div className="flex items-center space-x-4 w-full sm:w-auto">
-              <SearchBar onSearch={setSearchQuery} className="w-full sm:w-72 bg-white shadow-md px-4 rounded-full" />
-              <button 
-                onClick={logout} 
-                className="bg-[#FF9800] text-white font-semibold px-6 py-2 rounded-full shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              <SearchBar
+                onSearch={setSearchQuery}
+                className="w-full sm:w-72 h-12 rounded-full px-4 border border-gray-300 shadow-sm"
+              />
+              <button
+                onClick={logout}
+                className="bg-[#FF9800] text-white font-semibold px-6 h-12 rounded-full shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg"
               >
                 Logout
               </button>
@@ -93,7 +96,7 @@ export default function DashboardPage() {
             notes={notes}
             onDelete={(id) => setNotes(notes.filter((note) => note.id !== id))}
             onAdd={handleAddNote}
-            isSidebarOpen={sidebarOpen} 
+            isSidebarOpen={sidebarOpen}
           />
         </div>
       </div>

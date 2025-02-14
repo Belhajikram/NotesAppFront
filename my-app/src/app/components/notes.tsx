@@ -121,9 +121,8 @@ const Notes = ({
 
   return (
     <div
-      className={`relative px-4 md:px-8 transition-all duration-300 ${
-        isSidebarOpen ? "sm:ml-64" : "sm:ml-0"
-      }`}
+      className={`relative px-4 md:px-8 transition-all duration-300 ${isSidebarOpen ? "sm:ml-64" : "sm:ml-0"
+        }`}
     >
       {/* Notes List */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-4">
@@ -135,17 +134,17 @@ const Notes = ({
             className="shadow-lg hover:shadow-xl transition-all rounded-lg bg-white hover:bg-[#fabe63] group"
             extra={
               <div className="flex items-center space-x-3">
-                <Button 
-                  className="text-[#FF9800] group-hover:text-white" 
-                  type="link" 
-                  icon={<FiEdit />} 
-                  onClick={() => showEditModal(note)} 
+                <Button
+                  className="text-[#FF9800] group-hover:text-white"
+                  type="link"
+                  icon={<FiEdit />}
+                  onClick={() => showEditModal(note)}
                 />
-                <Button 
-                  className="text-[#FF9800] group-hover:text-white" 
-                  type="link" 
-                  icon={<FiTrash />} 
-                  onClick={() => showDeleteConfirm(note.id)} 
+                <Button
+                  className="text-[#FF9800] group-hover:text-white"
+                  type="link"
+                  icon={<FiTrash />}
+                  onClick={() => showDeleteConfirm(note.id)}
                 />
               </div>
             }
@@ -157,12 +156,11 @@ const Notes = ({
 
       {/* Floating Add New Note Button */}
       <Button
-  type="primary"
-  className="fixed bottom-6 right-6 sm:bottom-10 sm:right-10 bg-[#FF9800] hover:bg-[#FB8C00] rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-  icon={<span className="text-2xl text-white">+</span>}
-  onClick={showModal}
-/>
-
+        type="primary"
+        className="fixed bottom-6 right-6 sm:bottom-10 sm:right-10 bg-[#FF9800] hover:bg-[#FB8C00] rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+        icon={<span className="text-2xl text-white">+</span>}
+        onClick={showModal}
+      />
 
       {/* Modal for Adding or Editing Note */}
       <Modal
