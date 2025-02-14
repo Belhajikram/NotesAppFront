@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FiFolder, FiBriefcase, FiUser, FiCheckSquare, FiMenu } from "react-icons/fi";
+import { FiFolder, FiBriefcase, FiUser, FiCheckSquare } from "react-icons/fi";
 import { AiOutlineBulb } from "react-icons/ai";
 import { Menu } from "antd";
 
@@ -46,14 +46,6 @@ const Sidebar = ({ onSelectCategory, isOpen, setIsOpen }: {
 
   return (
     <>
-      {/* Sidebar Toggle Button (Visible on Mobile) */}
-      <button
-        className="md:hidden fixed top-4 left-4 z-50 bg-[#FF9800] text-white p-2 rounded-lg shadow-md"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <FiMenu size={24} />
-      </button>
-
       {/* Overlay to close sidebar when clicking outside */}
       {isOpen && <div className="fixed inset-0 bg-black bg-opacity-30 md:hidden" onClick={() => setIsOpen(false)}></div>}
 
