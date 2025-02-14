@@ -63,29 +63,30 @@ export default function DashboardPage() {
         <div 
           className={`flex-1 p-6 transition-all duration-300 ${sidebarOpen ? "ml-64 md:ml-0" : "ml-0"}`}
         >
-          {/* Top Section: Sidebar Toggle, Logout Button & Search Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 relative">
-            
-            {/* Sidebar Toggle and Logout Button in Mobile */}
-            <div className="flex items-center justify-between w-full sm:w-auto mb-4 sm:mb-0">
-              <button
-                className="md:hidden bg-[#FF9800] text-white p-2 rounded-lg shadow-md"
-                onClick={() => setSidebarOpen(!sidebarOpen)}
-              >
-                <FiMenu size={24} />
-              </button>
+          {/* Top Section: Sidebar Toggle, Welcome Message & Search Bar */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+            {/* Sidebar Toggle Button (Mobile) */}
+            <button 
+              className="md:hidden bg-[#FF9800] text-white p-2 rounded-lg shadow-md mb-4 sm:mb-0"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+            >
+              <FiMenu size={24} />
+            </button>
 
-              <button
-                onClick={logout}
-                className="md:hidden bg-[#FF9800] text-white font-semibold px-4 py-2 rounded-full shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            {/* Welcome Message */}
+            <h2 className="text-2xl font-semibold text-gray-700 mb-4 sm:mb-0 flex-1">
+              Welcome to your notes app!
+            </h2>
+
+            {/* Search Bar & Logout Button */}
+            <div className="flex items-center space-x-4 w-full sm:w-auto">
+              <SearchBar onSearch={setSearchQuery} className="w-full sm:w-72" />
+              <button 
+                onClick={logout} 
+                className="bg-[#FF9800] text-white font-semibold px-6 py-2 rounded-full shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg"
               >
                 Logout
               </button>
-            </div>
-
-            {/* Search Bar - Full Width on Mobile */}
-            <div className="w-full sm:w-auto">
-              <SearchBar onSearch={setSearchQuery} className="w-full sm:w-72" />
             </div>
           </div>
 
