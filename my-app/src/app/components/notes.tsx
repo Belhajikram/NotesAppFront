@@ -157,11 +157,12 @@ const Notes = ({
 
       {/* Floating Add New Note Button */}
       <Button
-        type="primary"
-        className="fixed bottom-10 right-6 sm:right-10 bg-[#FF9800] hover:bg-[#FB8C00] rounded-full p-4 shadow-lg z-50"
-        icon={<span className="text-xl">+</span>}
-        onClick={showModal}
-      />
+  type="primary"
+  className="fixed bottom-6 right-6 sm:bottom-10 sm:right-10 bg-[#FF9800] hover:bg-[#FB8C00] rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+  icon={<span className="text-2xl text-white">+</span>}
+  onClick={showModal}
+/>
+
 
       {/* Modal for Adding or Editing Note */}
       <Modal
