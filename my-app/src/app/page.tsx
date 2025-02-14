@@ -78,7 +78,7 @@ export default function DashboardPage() {
 
             {/* Search Bar & Logout Button */}
             <div className="flex items-center space-x-4 w-full sm:w-auto">
-              <SearchBar onSearch={setSearchQuery} className="w-full sm:w-72 bg-white shadow-md px-4 py-2 rounded-full" />
+              <SearchBar onSearch={setSearchQuery} className="w-full sm:w-72 bg-white shadow-md px-4 rounded-full" />
               <button 
                 onClick={logout} 
                 className="bg-[#FF9800] text-white font-semibold px-6 py-2 rounded-full shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg"
@@ -95,14 +95,6 @@ export default function DashboardPage() {
             onAdd={handleAddNote}
             isSidebarOpen={sidebarOpen} 
           />
-
-          {/* Floating Add Button */}
-          <button
-            className="fixed bottom-6 right-6 sm:bottom-10 sm:right-10 bg-[#FF9800] hover:bg-[#FB8C00] rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-            onClick={() => handleAddNote({ title: "New Note", content: "", category: selectedCategory })}
-          >
-            <span className="text-2xl text-white">+</span>
-          </button>
         </div>
       </div>
     </ProtectedRoute>
